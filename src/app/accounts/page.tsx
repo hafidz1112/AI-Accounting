@@ -67,9 +67,9 @@ export default function AccountsPage() {
   const getTypeBadge = (typeStr: string) => {
     switch (typeStr) {
       case "ASSET":
-        return "bg-blue-100 text-blue-800";
+        return "bg-[#E2F2EB] text-sage-800";
       case "LIABILITY":
-        return "bg-amber-100 text-amber-800";
+        return "bg-gold-100 text-gold-700";
       case "EQUITY":
         return "bg-purple-100 text-purple-800";
       case "REVENUE":
@@ -86,8 +86,8 @@ export default function AccountsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold mb-2">
-            <ListTree className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#E2F2EB] text-sage-800 rounded-full text-xs font-semibold mb-2">
+            <ListTree className="w-3.5 h-3.5 text-sage-600" />
             <span>Master Data Keuangan</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -101,14 +101,14 @@ export default function AccountsPage() {
         <div className="flex items-center space-x-3">
           <button
             onClick={loadAccounts}
-            className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition"
+            className="p-2.5 rounded-full border border-sage-200 bg-white hover:bg-sage-50 text-slate-600 transition"
             title="Refresh Akun"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl text-xs shadow-sm transition"
+            className="inline-flex items-center space-x-2 bg-[#367C69] hover:bg-sage-700 text-white font-semibold px-4 py-2.5 rounded-full text-xs shadow-md shadow-sage-900/10 transition"
           >
             <Plus className="w-4 h-4" />
             <span>+ Tambah Akun Baru</span>
@@ -117,12 +117,14 @@ export default function AccountsPage() {
       </div>
 
       {/* Accounts Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs">
+      <div className="bg-white rounded-3xl border border-sage-100 shadow-[0_4px_24px_rgba(27,61,52,0.03)] overflow-hidden">
+        <div className="p-5 border-b border-sage-100 flex items-center justify-between text-xs">
           <span className="font-bold uppercase tracking-wider text-slate-700">
             Daftar Akun ({accounts.length} Akun Terdaftar)
           </span>
-          <span className="text-slate-400">Standar Standby Double-Entry</span>
+          <span className="text-sage-600 font-medium bg-[#E2F2EB] px-2.5 py-0.5 rounded-full">
+            Standar Standby Double-Entry
+          </span>
         </div>
 
         {loading ? (
@@ -131,7 +133,7 @@ export default function AccountsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-100 text-slate-400 font-semibold bg-slate-50/50">
+                <tr className="border-b border-sage-100 text-slate-400 font-semibold bg-sage-50/40">
                   <th className="py-3 px-5">Kode Akun</th>
                   <th className="py-3 px-5">Nama Akun</th>
                   <th className="py-3 px-5">Kategori / Tipe</th>
@@ -139,9 +141,9 @@ export default function AccountsPage() {
                   <th className="py-3 px-5">Deskripsi / Peruntukan</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-sage-100/60">
                 {accounts.map((acc) => (
-                  <tr key={acc.id} className="hover:bg-slate-50/60 transition">
+                  <tr key={acc.id} className="hover:bg-sage-50/40 transition">
                     <td className="py-3.5 px-5 font-mono font-bold text-slate-900">
                       {acc.code}
                     </td>
@@ -173,16 +175,16 @@ export default function AccountsPage() {
 
       {/* Add Account Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-sage-100 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-sage-100">
               <h3 className="font-bold text-base text-slate-900 flex items-center space-x-2">
-                <FolderTree className="w-4 h-4 text-blue-600" />
+                <FolderTree className="w-4 h-4 text-sage-600" />
                 <span>Tambah Akun COA Baru</span>
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="text-slate-400 hover:text-slate-600 font-bold text-sm"
+                className="w-8 h-8 rounded-full bg-sage-50 hover:bg-sage-100 text-slate-400 hover:text-slate-600 flex items-center justify-center text-sm font-bold transition"
               >
                 ✕
               </button>
@@ -199,7 +201,7 @@ export default function AccountsPage() {
                   onChange={(e) => setCode(e.target.value)}
                   placeholder="5-1600"
                   required
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white font-mono focus:ring-2 focus:ring-sage-500 focus:outline-none"
                 />
               </div>
 
@@ -213,7 +215,7 @@ export default function AccountsPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Biaya Pemasaran & Iklan"
                   required
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white focus:ring-2 focus:ring-sage-500 focus:outline-none"
                 />
               </div>
 
@@ -230,7 +232,7 @@ export default function AccountsPage() {
                       if (val === "ASSET" || val === "EXPENSE") setNormalBalance("DEBIT");
                       else setNormalBalance("CREDIT");
                     }}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white focus:ring-2 focus:ring-sage-500 focus:outline-none"
                   >
                     <option value="EXPENSE">EXPENSE (Beban)</option>
                     <option value="ASSET">ASSET (Aset/Harta)</option>
@@ -247,7 +249,7 @@ export default function AccountsPage() {
                   <select
                     value={normalBalance}
                     onChange={(e) => setNormalBalance(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white focus:ring-2 focus:ring-sage-500 focus:outline-none"
                   >
                     <option value="DEBIT">DEBIT</option>
                     <option value="CREDIT">CREDIT</option>
@@ -264,7 +266,7 @@ export default function AccountsPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Contoh: Biaya iklan Meta Ads, Google Ads, promosi influencer."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white focus:ring-2 focus:ring-sage-500 focus:outline-none"
                 />
               </div>
 
@@ -272,14 +274,14 @@ export default function AccountsPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50"
+                  className="px-4 py-2.5 rounded-full text-slate-500 hover:bg-slate-100 font-medium"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold disabled:opacity-50 transition"
+                  className="px-5 py-2.5 rounded-full bg-[#367C69] hover:bg-sage-700 text-white font-bold shadow-md shadow-sage-900/10 disabled:opacity-50 transition"
                 >
                   {saving ? "Menyimpan..." : "Simpan Akun"}
                 </button>

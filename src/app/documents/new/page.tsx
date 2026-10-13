@@ -131,8 +131,8 @@ export default function NewDocumentPage() {
     <div className="p-8 max-w-6xl mx-auto w-full space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold mb-2">
-          <Cpu className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#E2F2EB] text-sage-800 rounded-full text-xs font-semibold mb-2">
+          <Cpu className="w-3.5 h-3.5 text-sage-600" />
           <span>AI Data Extraction & Contextual COA Engine</span>
         </div>
         <h1 className="text-2xl font-bold text-slate-900">
@@ -154,10 +154,10 @@ export default function NewDocumentPage() {
               key={idx}
               type="button"
               onClick={() => handleSelectSample(sample.text)}
-              className="text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/40 transition group"
+              className="text-left p-3.5 rounded-2xl border border-sage-100 bg-white hover:border-sage-500 hover:bg-[#F2F8F5] transition group shadow-sm"
             >
-              <div className="flex items-center space-x-2 text-slate-700 group-hover:text-blue-700 font-semibold text-xs">
-                <FileText className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <div className="flex items-center space-x-2 text-slate-700 group-hover:text-sage-800 font-semibold text-xs">
+                <FileText className="w-3.5 h-3.5 text-sage-600 shrink-0" />
                 <span className="truncate">{sample.title}</span>
               </div>
               <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">
@@ -171,7 +171,7 @@ export default function NewDocumentPage() {
       {/* Main Form: Input Text & Live AI Extraction */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         {/* Left: Raw OCR Text Area */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-sage-100 shadow-[0_4px_24px_rgba(27,61,52,0.03)] space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center space-x-1.5">
               <Upload className="w-4 h-4 text-slate-400" />
@@ -187,11 +187,11 @@ export default function NewDocumentPage() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Tempelkan hasil pembacaan teks OCR dari faktur, nota belanja, atau kuitansi di sini..."
-            className="w-full p-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-xs leading-relaxed text-slate-800 bg-slate-50/50"
+            className="w-full p-4 rounded-2xl border border-sage-200/80 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent font-mono text-xs leading-relaxed text-slate-800 bg-[#F9FCFA]"
           />
 
           {error && (
-            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center space-x-2">
+            <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center space-x-2">
               <AlertTriangle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -210,23 +210,23 @@ export default function NewDocumentPage() {
               type="button"
               onClick={handleExtract}
               disabled={loading}
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-500/20 disabled:opacity-50 transition"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#367C69] hover:bg-sage-700 text-white font-semibold text-xs shadow-md shadow-sage-900/10 disabled:opacity-50 transition"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4 text-gold-300" />
               <span>{loading ? "Memproses AI..." : "Ekstraksi dengan AI"}</span>
             </button>
           </div>
         </div>
 
         {/* Right: AI Structured JSON & Classification Preview */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white p-6 rounded-3xl border border-sage-100 shadow-[0_4px_24px_rgba(27,61,52,0.03)] space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center space-x-1.5">
-              <Code2 className="w-4 h-4 text-blue-600" />
+              <Code2 className="w-4 h-4 text-sage-600" />
               <span>Hasil JSON Terstruktur & Akun COA</span>
             </span>
             {extractionResult && (
-              <span className="inline-flex items-center space-x-1 text-emerald-600 text-xs font-semibold">
+              <span className="inline-flex items-center space-x-1 text-sage-700 text-xs font-semibold">
                 <CheckCircle className="w-3.5 h-3.5" />
                 <span>Format Tervalidasi</span>
               </span>
@@ -234,8 +234,8 @@ export default function NewDocumentPage() {
           </div>
 
           {!extractionResult ? (
-            <div className="py-24 text-center space-y-2 border-2 border-dashed border-slate-100 rounded-xl">
-              <Cpu className="w-8 h-8 text-slate-300 mx-auto" />
+            <div className="py-24 text-center space-y-2 border-2 border-dashed border-sage-100 rounded-2xl bg-sage-50/20">
+              <Cpu className="w-8 h-8 text-sage-300 mx-auto" />
               <p className="text-xs text-slate-500 font-medium">
                 Hasil ekstraksi JSON akan ditampilkan di sini
               </p>
@@ -246,40 +246,40 @@ export default function NewDocumentPage() {
           ) : (
             <div className="space-y-4">
               {/* Highlight Rekomendasi COA */}
-              <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200/80 space-y-2">
+              <div className="p-4 rounded-2xl bg-[#EAF5F0] border border-sage-200/80 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-blue-900">
+                  <span className="text-xs font-bold text-sage-900">
                     Akun Debit/Beban yang Direkomendasikan AI:
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white font-mono text-xs font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#367C69] text-white font-mono text-xs font-bold">
                     {extractionResult.suggested_account.account_code}
                   </span>
                 </div>
                 <div className="text-sm font-bold text-slate-900">
                   {extractionResult.suggested_account.account_name}
                 </div>
-                <p className="text-xs text-blue-800/80 leading-relaxed">
+                <p className="text-xs text-sage-800 leading-relaxed">
                   💡 {extractionResult.suggested_account.reason}
                 </p>
               </div>
 
               {/* Summary Values */}
               <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                <div className="p-2.5 bg-sage-50/60 rounded-xl border border-sage-100">
                   <div className="text-[11px] text-slate-400">Subtotal</div>
                   <div className="text-xs font-bold text-slate-900">
                     Rp {extractionResult.subtotal?.toLocaleString("id-ID")}
                   </div>
                 </div>
-                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                <div className="p-2.5 bg-sage-50/60 rounded-xl border border-sage-100">
                   <div className="text-[11px] text-slate-400">PPN / Pajak</div>
                   <div className="text-xs font-bold text-slate-900">
                     Rp {extractionResult.tax_amount?.toLocaleString("id-ID")}
                   </div>
                 </div>
-                <div className="p-2.5 bg-emerald-50 rounded-xl border border-emerald-100">
-                  <div className="text-[11px] text-emerald-600">Total Akhir</div>
-                  <div className="text-xs font-bold text-emerald-700">
+                <div className="p-2.5 bg-[#E2F2EB] rounded-xl border border-sage-200">
+                  <div className="text-[11px] text-sage-700">Total Akhir</div>
+                  <div className="text-xs font-bold text-sage-900">
                     Rp {extractionResult.total_amount?.toLocaleString("id-ID")}
                   </div>
                 </div>
@@ -287,7 +287,7 @@ export default function NewDocumentPage() {
 
               {/* Raw JSON viewer */}
               <div className="relative">
-                <pre className="p-4 rounded-xl bg-slate-950 text-emerald-400 font-mono text-[11px] overflow-x-auto max-h-64 leading-tight">
+                <pre className="p-4 rounded-2xl bg-[#1A3D34] text-emerald-300 font-mono text-[11px] overflow-x-auto max-h-64 leading-tight">
                   {JSON.stringify(extractionResult, null, 2)}
                 </pre>
               </div>
@@ -297,7 +297,7 @@ export default function NewDocumentPage() {
                 <button
                   type="button"
                   onClick={() => router.push("/documents")}
-                  className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition"
+                  className="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-full bg-[#367C69] hover:bg-sage-700 text-white font-semibold text-xs shadow-md shadow-sage-900/10 transition"
                 >
                   <span>Buka Panel Verifikasi & Posting Jurnal</span>
                   <ArrowRight className="w-4 h-4" />

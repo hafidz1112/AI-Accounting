@@ -155,8 +155,8 @@ export default function VerificationPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-semibold mb-2">
-            <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#E2F2EB] text-sage-800 rounded-full text-xs font-semibold mb-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-sage-600" />
             <span>Human-in-the-Loop Quality Control</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -170,14 +170,14 @@ export default function VerificationPage() {
         <div className="flex items-center space-x-2">
           <button
             onClick={loadData}
-            className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition"
+            className="p-2.5 rounded-full border border-sage-200 bg-white hover:bg-sage-50 text-slate-600 transition"
             title="Refresh Data"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
           <Link
             href="/documents/new"
-            className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl text-xs shadow-sm transition"
+            className="inline-flex items-center space-x-2 bg-[#367C69] hover:bg-sage-700 text-white font-semibold px-4 py-2.5 rounded-full text-xs shadow-md shadow-sage-900/10 transition"
           >
             <Plus className="w-4 h-4" />
             <span>+ Unggah Faktur Baru</span>
@@ -187,14 +187,14 @@ export default function VerificationPage() {
 
       {feedback && (
         <div
-          className={`p-4 rounded-xl text-xs flex items-center space-x-2.5 ${
+          className={`p-4 rounded-2xl text-xs flex items-center space-x-2.5 ${
             feedback.type === "success"
-              ? "bg-emerald-50 border border-emerald-200 text-emerald-800"
+              ? "bg-[#E2F2EB] border border-sage-200 text-sage-900"
               : "bg-rose-50 border border-rose-200 text-rose-800"
           }`}
         >
           {feedback.type === "success" ? (
-            <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 shrink-0 text-sage-600" />
           ) : (
             <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
           )}
@@ -205,32 +205,32 @@ export default function VerificationPage() {
       {/* Main Layout: List on Left, Side-by-side Review on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Documents Selector (4 cols) */}
-        <div className="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div className="lg:col-span-4 bg-white rounded-3xl border border-sage-100 shadow-[0_4px_24px_rgba(27,61,52,0.03)] p-4 space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-sage-100">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
               Antrean Faktur ({filteredDocs.length})
             </span>
-            <div className="flex space-x-1 text-[11px]">
+            <div className="flex space-x-1 text-[11px] bg-sage-50/70 p-1 rounded-full">
               <button
                 onClick={() => setFilter("ALL")}
-                className={`px-2 py-1 rounded-lg font-medium transition ${
-                  filter === "ALL" ? "bg-slate-800 text-white" : "text-slate-500 hover:bg-slate-100"
+                className={`px-3 py-1 rounded-full font-medium transition ${
+                  filter === "ALL" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-800"
                 }`}
               >
                 Semua
               </button>
               <button
                 onClick={() => setFilter("PENDING")}
-                className={`px-2 py-1 rounded-lg font-medium transition ${
-                  filter === "PENDING" ? "bg-amber-600 text-white" : "text-slate-500 hover:bg-slate-100"
+                className={`px-3 py-1 rounded-full font-medium transition ${
+                  filter === "PENDING" ? "bg-gold-400 text-slate-900 shadow-sm font-semibold" : "text-slate-500 hover:text-slate-800"
                 }`}
               >
                 Pending
               </button>
               <button
                 onClick={() => setFilter("POSTED")}
-                className={`px-2 py-1 rounded-lg font-medium transition ${
-                  filter === "POSTED" ? "bg-emerald-600 text-white" : "text-slate-500 hover:bg-slate-100"
+                className={`px-3 py-1 rounded-full font-medium transition ${
+                  filter === "POSTED" ? "bg-[#367C69] text-white shadow-sm font-semibold" : "text-slate-500 hover:text-slate-800"
                 }`}
               >
                 Posted
@@ -252,10 +252,10 @@ export default function VerificationPage() {
                   <div
                     key={doc.id}
                     onClick={() => selectDocument(doc)}
-                    className={`p-3.5 rounded-xl border text-left cursor-pointer transition ${
+                    className={`p-3.5 rounded-2xl border text-left cursor-pointer transition ${
                       isSelected
-                        ? "border-blue-500 bg-blue-50/50 shadow-sm"
-                        : "border-slate-200 hover:border-slate-300 bg-white"
+                        ? "border-[#367C69] bg-[#EAF5F0] shadow-sm"
+                        : "border-sage-100 hover:border-sage-300 bg-white"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -263,11 +263,11 @@ export default function VerificationPage() {
                         {doc.vendorName}
                       </span>
                       {doc.status === "POSTED" ? (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#E2F2EB] text-sage-800">
                           POSTED
                         </span>
                       ) : (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-gold-100 text-gold-700">
                           PENDING
                         </span>
                       )}
@@ -288,19 +288,19 @@ export default function VerificationPage() {
         {/* Right Column: Side-by-Side Review & Verification (8 cols) */}
         <div className="lg:col-span-8 space-y-6">
           {!selectedDoc ? (
-            <div className="bg-white rounded-2xl border border-slate-200 p-16 text-center text-slate-400 text-sm">
+            <div className="bg-white rounded-3xl border border-sage-100 p-16 text-center text-slate-400 text-sm">
               Pilih dokumen faktur dari daftar di sebelah kiri untuk memulai peninjauan.
             </div>
           ) : (
             <div className="space-y-6">
               {/* Document Overview & Action Bar */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+              <div className="bg-white rounded-3xl border border-sage-100 shadow-[0_4px_24px_rgba(27,61,52,0.03)] p-6 space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-sage-100">
                   <div>
                     <h2 className="text-lg font-bold text-slate-900 flex items-center space-x-2">
                       <span>Verifikasi Faktur: {formVendor}</span>
                       {selectedDoc.status === "POSTED" && (
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-semibold">
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#E2F2EB] text-sage-800 font-semibold">
                           Sudah Masuk Buku Besar
                         </span>
                       )}
@@ -315,7 +315,7 @@ export default function VerificationPage() {
                       <button
                         type="button"
                         onClick={() => handleDelete(selectedDoc.id)}
-                        className="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition"
+                        className="p-2 text-rose-500 hover:bg-rose-50 rounded-xl transition"
                         title="Hapus Dokumen"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -329,17 +329,17 @@ export default function VerificationPage() {
                   {/* Left: OCR Original Text */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1">
-                      <FileText className="w-3.5 h-3.5 text-slate-400" />
+                      <FileText className="w-3.5 h-3.5 text-sage-600" />
                       <span>Dokumen Asli (Teks OCR)</span>
                     </label>
-                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 font-mono text-[11px] text-slate-700 max-h-96 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                    <div className="p-4 rounded-2xl bg-sage-50/50 border border-sage-100 font-mono text-[11px] text-slate-700 max-h-96 overflow-y-auto whitespace-pre-wrap leading-relaxed">
                       {selectedDoc.rawText || "Tidak ada teks mentah."}
                     </div>
 
                     {selectedDoc.suggestedReason && (
-                      <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-200 text-[11px] text-blue-900 leading-relaxed">
-                        <span className="font-bold flex items-center space-x-1 mb-1">
-                          <Sparkles className="w-3 h-3 text-blue-600" />
+                      <div className="p-3.5 rounded-2xl bg-[#EAF5F0] border border-sage-200/80 text-[11px] text-sage-900 leading-relaxed">
+                        <span className="font-bold flex items-center space-x-1 mb-1 text-sage-700">
+                          <Sparkles className="w-3.5 h-3.5 text-gold-500" />
                           <span>Analisis AI:</span>
                         </span>
                         {selectedDoc.suggestedReason}
@@ -350,7 +350,7 @@ export default function VerificationPage() {
                   {/* Right: Editable Verification Fields */}
                   <div className="space-y-4">
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-sage-600" />
                       <span>Data Tervalidasi</span>
                     </label>
 
@@ -362,7 +362,7 @@ export default function VerificationPage() {
                           value={formVendor}
                           onChange={(e) => setFormVendor(e.target.value)}
                           disabled={selectedDoc.status === "POSTED"}
-                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white font-medium focus:ring-2 focus:ring-sage-500 focus:outline-none"
                         />
                       </div>
 
@@ -374,7 +374,7 @@ export default function VerificationPage() {
                             value={formInvoiceNo}
                             onChange={(e) => setFormInvoiceNo(e.target.value)}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white font-mono focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -384,7 +384,7 @@ export default function VerificationPage() {
                             value={formDate}
                             onChange={(e) => setFormDate(e.target.value)}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200/80 bg-white focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           />
                         </div>
                       </div>
@@ -401,7 +401,7 @@ export default function VerificationPage() {
                               setFormTotal(val + formTax);
                             }}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 rounded-xl border border-sage-200/80 bg-white font-medium focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -415,7 +415,7 @@ export default function VerificationPage() {
                               setFormTotal(formSubtotal + val);
                             }}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 rounded-xl border border-sage-200/80 bg-white font-medium focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -425,21 +425,21 @@ export default function VerificationPage() {
                             value={formTotal}
                             onChange={(e) => setFormTotal(parseFloat(e.target.value) || 0)}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white font-bold text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 rounded-xl border border-sage-200/80 bg-white font-bold text-slate-900 focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           />
                         </div>
                       </div>
 
                       {/* Math Consistency Status */}
-                      <div className="text-[11px] flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100">
+                      <div className="text-[11px] flex items-center justify-between px-3.5 py-2 rounded-xl bg-sage-50/70 border border-sage-100">
                         <span>Konsistensi Nilai:</span>
                         {isMathBalanced ? (
-                          <span className="text-emerald-600 font-semibold flex items-center space-x-1">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span className="text-sage-700 font-semibold flex items-center space-x-1">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-sage-600" />
                             <span>Presisi (Subtotal + PPN = Total)</span>
                           </span>
                         ) : (
-                          <span className="text-amber-600 font-semibold flex items-center space-x-1">
+                          <span className="text-amber-700 font-semibold flex items-center space-x-1">
                             <AlertCircle className="w-3.5 h-3.5" />
                             <span>Selisih nominal terdeteksi</span>
                           </span>
@@ -456,7 +456,7 @@ export default function VerificationPage() {
                             value={formExpenseCode}
                             onChange={(e) => setFormExpenseCode(e.target.value)}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3.5 py-2 rounded-xl border border-sage-200/80 bg-white text-xs focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           >
                             {accounts
                               .filter((a) => a.type === "EXPENSE")
@@ -476,7 +476,7 @@ export default function VerificationPage() {
                             value={formPaymentCode}
                             onChange={(e) => setFormPaymentCode(e.target.value)}
                             disabled={selectedDoc.status === "POSTED"}
-                            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full px-3.5 py-2 rounded-xl border border-sage-200/80 bg-white text-xs focus:ring-2 focus:ring-sage-500 focus:outline-none"
                           >
                             <option value="1-1100">1-1100 - Kas & Setara Kas (Dibayar Tunai / Transfer)</option>
                             <option value="2-1100">2-1100 - Utang Usaha (Pembelian Tempo / Kredit)</option>
@@ -488,22 +488,22 @@ export default function VerificationPage() {
                 </div>
 
                 {/* Double-Entry Balancing Preview */}
-                <div className="p-4 rounded-xl bg-slate-900 text-slate-200 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+                <div className="p-4 rounded-2xl bg-[#1A3D34] text-slate-200 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-emerald-200">
                     <span>Pratinjau Jurnal Double-Entry yang Akan Diposting</span>
-                    <span className="text-emerald-400">ΣDebit = ΣKredit</span>
+                    <span className="text-gold-300">ΣDebit = ΣKredit</span>
                   </div>
 
                   <div className="space-y-1.5 font-mono text-xs">
                     {/* Debit row */}
-                    <div className="flex items-center justify-between text-blue-300">
+                    <div className="flex items-center justify-between text-emerald-300">
                       <span>[DEBIT] {formExpenseCode} Beban</span>
                       <span>Rp {formSubtotal.toLocaleString("id-ID")}</span>
                     </div>
 
                     {/* Tax debit if any */}
                     {formTax > 0 && (
-                      <div className="flex items-center justify-between text-blue-300">
+                      <div className="flex items-center justify-between text-emerald-300">
                         <span>[DEBIT] 1-1300 PPN Masukan</span>
                         <span>Rp {formTax.toLocaleString("id-ID")}</span>
                       </div>
@@ -523,22 +523,22 @@ export default function VerificationPage() {
                     type="button"
                     onClick={handlePostToLedger}
                     disabled={posting}
-                    className="w-full inline-flex items-center justify-center space-x-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-lg shadow-blue-500/20 disabled:opacity-50 transition"
+                    className="w-full inline-flex items-center justify-center space-x-2 py-3.5 rounded-full bg-[#367C69] hover:bg-sage-700 text-white font-bold text-xs shadow-md shadow-sage-900/10 disabled:opacity-50 transition"
                   >
-                    <CheckCircle2 className="w-4 h-4" />
+                    <CheckCircle2 className="w-4 h-4 text-gold-300" />
                     <span>
                       {posting ? "Memproses Posting Jurnal..." : "Konfirmasi & Posting ke Buku Besar (General Ledger)"}
                     </span>
                   </button>
                 ) : (
-                  <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-between">
+                  <div className="p-3.5 rounded-2xl bg-[#E2F2EB] border border-sage-200 text-sage-900 text-xs font-semibold flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-sage-600" />
                       <span>Faktur ini telah berhasil diposting ke Buku Besar.</span>
                     </div>
                     <Link
                       href="/ledger"
-                      className="text-blue-600 hover:underline flex items-center space-x-1"
+                      className="text-sage-700 hover:underline flex items-center space-x-1 font-bold"
                     >
                       <span>Lihat Buku Besar</span>
                       <ArrowRight className="w-3.5 h-3.5" />
