@@ -1,0 +1,109 @@
+Berikut adalah draf **Product Requirements Document (PRD) / Software Requirements Specification (SRS)** untuk sistem **Otomatisasi Akuntansi dan Pembukuan Berbasis AI**. Dokumen ini dirancang dengan standar industri agar siap digunakan sebagai acuan teknis maupun pengembangan produk.
+
+---
+
+# Product Requirements Document (PRD) / Software Requirements Specification (SRS)
+
+## Sistem Otomatisasi Akuntansi dan Pembukuan Berbasis AI (AI-Powered Accounting & Bookkeeping Automation System)
+
+---
+
+## 1. Ikhtisar Produk (Product Overview)
+
+### 1.1 Deskripsi Singkat
+
+Sistem Otomatisasi Akuntansi dan Pembukuan Berbasis AI adalah aplikasi web cerdas yang dirancang untuk mengotomatisasi siklus akuntansi end-to-end—mulai dari ekstraksi dokumen (faktur/struk), kategorisasi transaksi otomatis menggunakan AI, rekonsiliasi bank real-time, hingga pembuatan laporan keuangan instan (Laba Rugi, Neraca, dan Arus Kas) dengan tingkat akurasi tinggi dan minim kesalahan manusia.
+
+### 1.2 Tujuan Utama (Goals)
+
+* **Efisiensi Waktu:** Memangkas waktu entri data pembukuan manual hingga 85%.
+* **Akurasi Tinggi:** Memanfaatkan kombinasi Smart OCR dan LLM/Machine Learning untuk meminimalkan *human error* pada pencatatan nominal dan kode akun.
+* **Visibility Real-Time:** Menyediakan laporan keuangan instan bagi pemilik bisnis atau akuntan untuk pengambilan keputusan yang cepat.
+* **Human-in-the-Loop:** Menjaga kontrol kualitas melalui panel verifikasi sebelum transaksi difinalisasi ke buku besar (*General Ledger*).
+
+---
+
+## 2. Target Pengguna (Target Users)
+
+1. **Pemilik Bisnis / UMKM:** Membutuhkan pembukuan praktis tanpa harus paham akuntansi mendalam.
+2. **Akuntan / Bookkeeper:** Mempercepat proses rekapitulasi, pencocokan bank, dan penyusunan laporan klien.
+3. **Administrator Sistem:** Mengelola hak akses pengguna, konfigurasi perusahaan (*Chart of Accounts*), dan integrasi API perbankan.
+
+---
+
+## 3. Fitur Utama & Kebutuhan Fungsional (Functional Requirements)
+
+### 3.1 Modul Ingestasi Dokumen & Smart OCR (AI-Powered Document Intake)
+
+* **Unggah Dokumen:** Pengguna dapat mengunggah file faktur, kuitansi, atau nota dalam format PDF, PNG, atau JPG (mendukung *drag-and-drop* dan pemindaian via kamera seluler).
+* **Ekstraksi Otomatis:** Sistem menggunakan AI/OCR untuk mengekstrak data kunci secara otomatis:
+* Tanggal Transaksi
+* Nama Vendor / Supplier
+* Nomor Faktur / Invoice Number
+* Rincian Item, Pajak (PPN), dan Total Pembayaran
+
+
+* **Preview & Validasi:** Menampilkan hasil ekstraksi di sebelah dokumen asli agar pengguna dapat meninjau data sebelum disimpan.
+
+### 3.2 Mesin Kategorisasi Pintar & Buku Besar (AI Accounting Engine)
+
+* **Pencocokan Akun Otomatis:** Berdasarkan deskripsi atau nama vendor hasil ekstraksi, AI menyarankan akun debit dan kredit yang paling sesuai berdasarkan *Chart of Accounts* (COA) perusahaan.
+* **Manajemen Chart of Accounts (COA):** Fitur untuk menambah, mengubah, atau menghapus kategori akun (Aset, Kewajiban, Ekuitas, Pendapatan, Biaya).
+* **General Ledger (Buku Besar):** Menyimpan seluruh jurnal transaksi secara kronologis dengan prinsip akuntansi berpasangan (*double-entry bookkeeping*).
+
+### 3.3 Modul Rekonsiliasi Bank Otomatis (Auto Bank Reconciliation)
+
+* **Impor Mutasi Bank:** Mendukung impor file mutasi rekening (CSV/Excel) atau integrasi API perbankan.
+* **Smart Matching:** Algoritma mencocokkan transaksi internal (dari faktur/pengeluaran) dengan mutasi bank aktual berdasarkan kriteria:
+* Tanggal (dengan toleransi selisih waktu tertentu)
+* Nominal / Jumlah Dana
+* Referensi / Nama Transaksi
+
+
+* **Exception Handling:** Menandai transaksi yang tidak cocok atau tidak dikenal agar dapat ditinjau manual oleh akuntan.
+
+### 3.4 Modul Pelaporan Keuangan Instan (Financial Reporting)
+
+* **Laporan Laba Rugi (Income Statement):** Menampilkan pendapatan dan beban dalam periode tertentu secara otomatis.
+* **Neraca (Balance Sheet):** Menyajikan posisi aset, kewajiban, dan ekuitas perusahaan secara real-time.
+* **Laporan Arus Kas (Cash Flow Statement):** Melacak keluar masuknya kas dari aktivitas operasi, investasi, dan pendanaan.
+* **Ekspor Laporan:** Kemampuan mengunduh laporan dalam format PDF dan Spreadsheet (Excel/CSV).
+
+---
+
+## 4. Kebutuhan Non-Fungsional (Non-Functional Requirements)
+
+### 4.1 Keamanan & Privasi Data (Security)
+
+* **Enkripsi Data:** Data sensitif keuangan wajib dienkripsi saat transit (menggunakan HTTPS/TLS 1.3) dan saat disimpan di database (*At-rest encryption*).
+* **Autentikasi & Otorisasi:** Sistem menerapkan login berbasis token aman (JWT) serta kontrol akses berbasis peran (*Role-Based Access Control* - RBAC untuk Admin, Akuntan, dan Viewer).
+* **Kepatuhan Privasi:** Memastikan data keuangan perusahaan tidak digunakan untuk melatih model AI publik eksternal (menggunakan *Enterprise API* yang menjaga kerahasiaan data).
+
+### 4.2 Performa & Skalabilitas (Performance)
+
+* **Kecepatan Respons Ekstraksi:** Proses OCR dan ekstraksi AI untuk satu dokumen standar selesai dalam waktu $< 5$ detik.
+* **Ketersediaan Sistem (Uptime):** Target *uptime* sistem minimal 99.5%.
+
+---
+
+## 5. Rancangan Arsitektur & Teknologi yang Disarankan (Tech Stack Blueprint)
+
+* **Frontend:** Next.js (React) / TypeScript dengan Tailwind CSS untuk antarmuka dashboard yang responsif dan cepat.
+* **Backend:** Node.js (Express/NestJS) atau PHP (Laravel) untuk menangani logika bisnis akuntansi dan manajemen API.
+* **Database:** PostgreSQL atau MySQL untuk pengelolaan data relasional yang ketat (menjamin integritas transaksi *double-entry*).
+* **AI & OCR Service:** Integrasi layanan Cloud OCR (seperti Google Cloud Document AI atau AWS Textract) dikombinasikan dengan LLM API (OpenAI/Anthropic/DeepSeek) untuk *parsing* teks cerdas.
+* **Deployment & DevOps:** Docker, Git/GitHub, dan Vercel/Cloud VPS (seperti Ubuntu Server) untuk lingkungan staging dan produksi.
+
+---
+
+## 6. Batasan Proyek (Out of Scope / MVP Boundaries)
+
+Untuk tahap pengembangan awal (MVP - *Minimum Viable Product*), fitur-fitur berikut belum dimasukkan:
+
+* Modul perpajakan lanjutan yang otomatis terhubung langsung ke portal pajak pemerintah (e-Faktur/Direktorat Jenderal Pajak secara real-time).
+* Multi-mata uang (*Multi-currency*) yang kompleks (fokus awal pada satu mata uang lokal, misal IDR).
+* Manajemen penggajian karyawan (*Payroll processing* mendalam).
+
+---
+
+Apakah Anda ingin kita mendiskusikan salah satu modul spesifik di atas—seperti perancangan skema database untuk *Double-Entry Bookkeeping* atau logika *Prompt Engineering* untuk ekstraksi fakturnya?

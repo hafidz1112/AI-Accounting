@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Account {
+  id            String        @id @default(cuid())
+  code          String        @unique
+  name          String
+  type          String        // ASSET, LIABILITY, EQUITY, REVENUE, EXPENSE
+  normalBalance String        // DEBIT, CREDIT
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  journalItems  JournalItem[]
+}
+
+model Document {
+  id                   String         @id @default(cuid())
+  invoiceNumber        String?
+  invoiceDate          DateTime?
+  vendorName           String
+  rawText              String?
+  subtotal             Float          @default(0)
+  taxAmount            Float          @default(0)
+  totalAmount          Float          @default(0)
+  status               String         @default("PENDING") // PENDING, VERIFIED, POSTED, REJECTED
+  suggestedAccountCode String?
+  suggestedAccountName String?
+  suggestedReason      String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  items                DocumentItem[]
+  journalEntry         JournalEntry?
+}
+
+model DocumentItem {
+  id          String   @id @default(cuid())
+  documentId  String
+  description String
+  quantity    Float    @default(1)
+  unitPrice   Float    @default(0)
+  totalPrice  Float    @default(0)
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+}
+
+model JournalEntry {
+  id          String        @id @default(cuid())
+  entryNumber String        @unique
+  date        DateTime      @default(now())
+  description String
+  documentId  String?       @unique
+  status      String        @default("POSTED") // DRAFT, POSTED
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  document    Document?     @relation(fields: [documentId], references: [id], onDelete: SetNull)
+  items       JournalItem[]
+}
+
+model JournalItem {
+  id             String       @id @default(cuid())
+  journalEntryId String
+  accountId      String
+  debit          Float        @default(0)
+  credit         Float        @default(0)
+  memo           String?
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  account        Account      @relation(fields: [accountId], references: [id])
+}
