@@ -96,7 +96,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-[1520px] mx-auto w-full">
+    <div className="p-5 sm:p-6 lg:p-8 space-y-6 w-full">
       {/* Top Bar Helper & Currency Switch */}
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
         <div className="flex items-center space-x-2">

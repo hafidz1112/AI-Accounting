@@ -45,7 +45,7 @@ export default function ReportsPage() {
   const isBalanced = data?.balanceSheet?.isBalanced;
 
   return (
-    <div className="p-8 max-w-5xl mx-auto w-full space-y-6">
+    <div className="p-6 lg:p-8 w-full space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>

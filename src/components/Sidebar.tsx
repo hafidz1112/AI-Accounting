@@ -63,7 +63,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="relative flex flex-col items-center justify-between py-6 px-3 bg-[#367C69] text-white w-20 md:w-24 shrink-0 z-30 transition-all select-none">
+    <aside className="h-full sticky top-0 left-0 flex flex-col items-center justify-between py-6 px-3 bg-[#367C69] text-white w-20 md:w-24 shrink-0 z-30 transition-all select-none">
       {/* Decorative subtle organic wave background overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <svg

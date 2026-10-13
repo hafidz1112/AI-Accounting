@@ -128,7 +128,7 @@ export default function NewDocumentPage() {
   };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto w-full space-y-8">
+    <div className="p-6 lg:p-8 w-full space-y-8">
       {/* Header */}
       <div>
         <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#E2F2EB] text-sage-800 rounded-full text-xs font-semibold mb-2">

@@ -16,7 +16,7 @@ export default function Header() {
   const [showNotifications, setShowNotifications] = useState(false);
 
   return (
-    <header className="px-6 md:px-8 py-5 border-b border-sage-100 flex items-center justify-between gap-4 bg-white sticky top-0 z-20">
+    <header className="px-6 md:px-8 py-4 border-b border-sage-100/80 flex items-center justify-between gap-4 bg-white sticky top-0 z-20 shrink-0">
       {/* Left: Brand Mark & Search Bar */}
       <div className="flex items-center space-x-6 flex-1 max-w-xl">
         {/* Golden Diamond Logo Mark (Inspired by reference) */}

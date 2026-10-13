@@ -14,20 +14,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
-      <body className="min-h-screen bg-[#D8EFE4] text-slate-900 antialiased p-2 sm:p-4 md:p-6 lg:p-7 flex flex-col justify-center items-center">
-        {/* Main Floating Rounded Application Frame */}
-        <div className="w-full max-w-[1600px] min-h-[92vh] bg-white rounded-[26px] md:rounded-[34px] shadow-2xl shadow-sage-950/10 flex overflow-hidden border border-sage-200/80 relative">
-          {/* Deep Sage Curved Dock Navigation */}
-          <Sidebar />
+    <html lang="id" className="h-full w-full">
+      <body className="h-full w-full flex bg-[#F6FAF8] text-slate-900 antialiased overflow-hidden">
+        {/* Sidebar nempel persis di sisi kiri layar & tidak ikut ter-scroll */}
+        <Sidebar />
 
-          {/* Main Content Area */}
-          <div className="flex-1 flex flex-col min-w-0 bg-white overflow-hidden">
-            <Header />
-            <main className="flex-1 overflow-y-auto">
-              {children}
-            </main>
-          </div>
+        {/* Area Utama: Header di atas (fixed) & Konten scrollable independen */}
+        <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden bg-[#F6FAF8]">
+          <Header />
+          <main className="flex-1 overflow-y-auto min-w-0 bg-[#F6FAF8]">
+            {children}
+          </main>
         </div>
       </body>
     </html>
